@@ -1,0 +1,15 @@
+body {
+    color: #f3f4f6;
+}
+
+.hero_image img:hover {
+    opacity:0.5;
+}
+
+.card {
+    width: 300px;
+}
+
+.navbar {
+    color: #ffffff;
+}
