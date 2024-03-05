@@ -9,6 +9,9 @@
         <!-- Fonts -->
         <!-- <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" /> -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Madimi+One&display=swap" rel="stylesheet">
         
 
         <!-- Styles -->
@@ -47,63 +50,102 @@
                 <img class="hero_image img-fluid" src="{{asset('storage/hero.jpg')}}" alt="Hero Image"> </img>
         </div>
 
-        <div class="container mt-4">
-            <div class="card-group">
-            <div class="row justify-content-center">
+        <!-- <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h1 class="display-4">Fluid jumbotron</h1>
+                <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+            </div>
+        </div> -->
+
+        <div class="my-5">
+            <div class="p-5 text-center bg-primary bg-opacity-5 rounded-pill">
+                <div class="container py-5">
+                    <u class="text-light"> <h1 class="text-light" style="font-family: 'Georgia'; font-size: 50px;">Improve Your Mental Health With Proven Methods </h1> </u>
+                    <p class="col-lg-8 mx-auto lead text-light">
+                    Empower your mental well-being with our holistic support web app, offering personalized journaling, habit tracking, 
+                    uplifting affirmations, and soothing meditation audios—all designed to cultivate a positive and resilient mindset for 
+                    a healthier and happier you.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="container mt-4 d-flex justify-content-center">
+            <div class="card-group ml-6">
+            <div class="row flex-row ml-6">
                 <div class="col-md-6 mb-4">
                 <div class="card">
                     <img class="card-img-top" src="{{asset('storage/journal.png')}}"/>
                     <div class="card-body">
-                        <h2 class="card-title"> Title </h2>
-                        <span class="card-subtitle"> Subtitle </span>
+                        <h2 class="card-title"> Journaling </h2>
+                        <!-- <span class="card-subtitle"> Subtitle </span> -->
                         <div class="card-text">
-                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Amet blanditiis ipsam magnam architecto, alias exercitationem quis optio fuga mollitia tenetur laborum recusandae velit reiciendis maiores id culpa assumenda sapiente? Numquam!
+                        Capture your thoughts in a personalized sanctuary with our rich text journal feature. Organize your 
+                        journey seamlessly by tagging entries, creating a tailored reflection space for your unique experiences.                         </div>
+                    </div>      
+                </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                <div class="card">
+                    <img class="card-img-top" src="{{asset('storage/Meditation.jpg')}}"/>
+                    <div class="card-body">
+                        <h2 class="card-title"> Breathwork & Meditation Audios </h2>
+                        <!-- <span class="card-subtitle"> Subtitle </span> -->
+                        <div class="card-text">
+                        Immerse yourself in tranquility with our meditation audios, thoughtfully categorized by time duration and 
+                        moods such as energy, calming, and focus.                     
                         </div>
                     </div>      
                 </div>
                 </div>
                 <div class="col-md-6 mb-4">
                 <div class="card">
-                    <img class="card-img-top" src="{{asset('storage/journal.png')}}"/>
+                    <img class="card-img-top" src="{{asset('storage/Habit_Tracker.jpg')}}"/>
                     <div class="card-body">
-                        <h2 class="card-title"> Title </h2>
-                        <span class="card-subtitle"> Subtitle </span>
+                        <h2 class="card-title"> Habit Tracker </h2>
+                        <!-- <span class="card-subtitle"> Subtitle </span> -->
                         <div class="card-text">
-                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Amet blanditiis ipsam magnam architecto, alias exercitationem quis optio fuga mollitia tenetur laborum recusandae velit reiciendis maiores id culpa assumenda sapiente? Numquam!
-                        </div>
+                        Transform your routine with our weekly habit tracker, seamlessly integrating progress monitoring into 
+                        your lifestyle. Reflect on your journey by reviewing past week records, empowering you to cultivate 
+                        lasting positive habits.
+                    </div>
                     </div>      
                 </div>
                 </div>
                 <div class="col-md-6 mb-4">
                 <div class="card">
-                    <img class="card-img-top" src="{{asset('storage/journal.png')}}"/>
+                    <img class="card-img-top" src="{{asset('storage/Affirmations.jpg')}}"/>
                     <div class="card-body">
-                        <h2 class="card-title"> Title </h2>
-                        <span class="card-subtitle"> Subtitle </span>
+                        <h2 class="card-title"> Affirmations </h2>
+                        <!-- <span class="card-subtitle"> Subtitle </span> -->
                         <div class="card-text">
-                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Amet blanditiis ipsam magnam architecto, alias exercitationem quis optio fuga mollitia tenetur laborum recusandae velit reiciendis maiores id culpa assumenda sapiente? Numquam!
-                        </div>
-                    </div>      
-                </div>
-                </div>
-                <div class="col-md-6 mb-4">
-                <div class="card">
-                    <img class="card-img-top" src="{{asset('storage/journal.png')}}"/>
-                    <div class="card-body">
-                        <h2 class="card-title"> Title </h2>
-                        <span class="card-subtitle"> Subtitle </span>
-                        <div class="card-text">
-                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Amet blanditiis ipsam magnam architecto, alias exercitationem quis optio fuga mollitia tenetur laborum recusandae velit reiciendis maiores id culpa assumenda sapiente? Numquam!
-                        </div>
+                        Elevate your mindset with our affirmations feature, delivering a daily dose of positivity. Explore a 
+                        diverse array of uplifting affirmations and curate your favorites for a personalized reservoir of 
+                        inspiration.                        
+                    </div>
                     </div>      
                 </div>
                 </div>
             </div>
             </div>
-        <div>
+</div>
 
+<div class="container">
+  <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+    <div class="col-md-4 d-flex align-items-center">
+      <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
+        <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
+      </a>
+      <span class="mb-3 mb-md-0 text-muted">© MindFit</span>
+    </div>
 
-
+    <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+      <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#twitter"></use></svg></a></li>
+      <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#instagram"></use></svg></a></li>
+      <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#facebook"></use></svg></a></li>
+    </ul>
+  </footer>
+</div>
         
         </body>
 </html>
