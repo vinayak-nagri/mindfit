@@ -10,21 +10,52 @@ html {
 }
 
 body {
-    background-color: light-gray;
+    background-color: #f3f4f6;
     margin:0;
     padding:0;
 }
 
-img:hover {
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+    cursor:pointer;
+}
+
+a.active {
+    text-decoration:underline;
+}
+
+/* img:hover {
     opacity:0.5;
+} */
+
+.page_header {
+   text-align: center;
+   color: #ffffff;
+   
+}
+
+.save_button {
+    text-align: right;
 }
 
 .card {
     width: 300px;
 }
 
+.affirmations {
+    min-width: 400px;
+}
+
 .navbar {
-    color: #ffffff;
+    background-color: #f3f4f6;
+    border-style: solid;
+    border-width: 0 0 2px 0;
+    border-color: cornflowerblue;
+    
 }
 
 .row {
@@ -35,3 +66,4 @@ img:hover {
 .footer {
     color: #ffffff;
 }
+
