@@ -3,6 +3,8 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AffirmationsController;
+use App\Http\Controllers\HabitTrackerController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +36,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/affirmations', [AffirmationsController::class, 'index'])->name('affirmations');
     Route::post('/upload-image', [AffirmationsController::class, 'uploadImage'])->name('upload.image');
     Route::post('/save-favorite/{affirmationId}', [AffirmationsController::class, 'saveFavoriteAffirmation'])->name('save.favorite.affirmation');
+    Route::get('/habit-tracker', [HabitTrackerController::class, 'index'])->name('habit.tracker');
+    Route::post('/habits', [HabitTrackerController::class, 'store'])->name('habits.store');
+    Route::put('/habits/update-habits', [HabitTrackerController::class, 'updateHabits'])->name('habits.update');
+
+
     // Route::get('/affirmations', [AffirmationsController::class, 'savedAffirmations'])->name('saved.affirmations');
     // Route::get('/affirmations/saved', [AffirmationsController::class, 'savedAffirmations'])->name('saved.affirmations');
 

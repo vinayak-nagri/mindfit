@@ -40,7 +40,7 @@
                         <span>Hi, {{ Auth::user()->name }}!</span>
                         <a href="{{ url('/dashboard') }}">Dashboard</a>
                         <a href="{{ url('/affirmations') }}" class="active">Affirmations</a>
-                        
+                        <a href="{{route('habit.tracker')}}">Habit Tracker</a>
                     @else
                         <a href="{{ route('login') }}" >Log in</a>
                     
@@ -223,8 +223,6 @@
       </a>
       <span class="mb-3 mb-md-0 text-muted">© MindFit</span>
     </div>
-
-    
   </footer>
 </div>
     

@@ -37,6 +37,7 @@
                         <span>Hi, {{ Auth::user()->name }}!</span>
                         <a href="{{ url('/dashboard') }}" class="active">Dashboard</a>
                         <a href="{{route('affirmations')}}">Affirmations</a>
+                        <a href="{{route('habit.tracker')}}">Habit Tracker</a>
                     @else
                         <a href="{{ route('login') }}" >Log in</a>
                     
