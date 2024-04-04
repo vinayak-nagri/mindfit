@@ -39,7 +39,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/habit-tracker', [HabitTrackerController::class, 'index'])->name('habit.tracker');
     Route::post('/habits', [HabitTrackerController::class, 'store'])->name('habits.store');
     Route::put('/habits/update-habits', [HabitTrackerController::class, 'updateHabits'])->name('habits.update');
-
+    Route::post('/habits/deactivate', [HabitTrackerController::class, 'deactivateHabit'])->name('habits.deactivate');
+    Route::post('/habits/reactivate', [HabitTrackerController::class, 'reactivateHabit'])->name('habits.reactivate');
+    // Route::get('/habits/week/', [HabitTrackerController::class, 'showWeek'])->name('habits.showWeek');
 
     // Route::get('/affirmations', [AffirmationsController::class, 'savedAffirmations'])->name('saved.affirmations');
     // Route::get('/affirmations/saved', [AffirmationsController::class, 'savedAffirmations'])->name('saved.affirmations');

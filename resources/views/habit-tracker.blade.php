@@ -104,7 +104,7 @@
 
 
     <div class="container">
-    <h2 class="mt-5 mb-4">Habit Tracker</h2>
+    <h2 class="mt-5 mb-4">Habit Tracker for the Current Week</h2>
     @if($habits->isEmpty())
         <p>No habits added yet.</p>
     @else
@@ -126,17 +126,25 @@
             </thead>
             <tbody>
                 @foreach($habits as $habit)
-                <tr>
-                    <td>{{ $habit->habit_name }}</td>
-                    <td><input type="checkbox" name="monday"></td>
-                    <td><input type="checkbox" name="tuesday"></td>
-                    <td><input type="checkbox" name="wednesday"></td>
-                    <td><input type="checkbox" name="thursday"></td>
-                    <td><input type="checkbox" name="friday"></td>
-                    <td><input type="checkbox" name="saturday"></td>
-                    <td><input type="checkbox" name="sunday"></td>
-                    
-                </tr>
+                    @if($habit->is_active)
+                        <tr>
+                            <td>{{ $habit->habit_name }}</td>
+                            <!-- <td><input type="checkbox" name="monday"></td>
+                            <td><input type="checkbox" name="tuesday"></td>
+                            <td><input type="checkbox" name="wednesday"></td>
+                            <td><input type="checkbox" name="thursday"></td>
+                            <td><input type="checkbox" name="friday"></td>
+                            <td><input type="checkbox" name="saturday"></td>
+                            <td><input type="checkbox" name="sunday"></td> -->
+                            <td><input type="checkbox" name="habits[{{ $habit->id }}][monday]"  {{ $habit->monday ? 'checked' : '' }}></td>
+                            <td><input type="checkbox" name="habits[{{ $habit->id }}][tuesday]"  {{ $habit->tuesday ? 'checked' : '' }}></td>
+                            <td><input type="checkbox" name="habits[{{ $habit->id }}][wednesday]" {{ $habit->wednesday ? 'checked' : '' }}></td>
+                            <td><input type="checkbox" name="habits[{{ $habit->id }}][thursday]" {{ $habit->thursday ? 'checked' : '' }}></td>
+                            <td><input type="checkbox" name="habits[{{ $habit->id }}][friday]" {{ $habit->friday ? 'checked' : '' }}></td>
+                            <td><input type="checkbox" name="habits[{{ $habit->id }}][saturday]" {{ $habit->saturday ? 'checked' : '' }}></td>
+                            <td><input type="checkbox" name="habits[{{ $habit->id }}][sunday]" {{ $habit->sunday ? 'checked' : '' }}></td>
+                        </tr>
+                    @endif
                 @endforeach
             </tbody>
         </table>
@@ -144,6 +152,46 @@
         </form>
     @endif
 </div>
+
+<div class="container">
+    <h2 class="mt-5 mb-4">Modify Habits</h2>
+    <div class="card m-3">
+        <div class="card-body">
+            <form action="{{ route('habits.deactivate') }}" method="POST">
+                @csrf
+                <div class="mb-3">
+                    <label for="habit_id" class="form-label">Select Habit to Deactivate:</label>
+                    <select class="form-select" id="habit_id" name="habit_id">
+                        <option value="" selected disabled>Select Habit</option>
+                        @foreach($habits as $habit)
+                            <option value="{{ $habit->id }}">{{ $habit->habit_name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-danger">Deactivate Habit</button>
+            </form>
+        </div>
+        <div class="card-body">
+        <form action="{{ route('habits.reactivate') }}" method="POST">
+            @csrf
+            <div class="mb-3">
+                <label for="habit" class="form-label">Select Habit to Reactivate</label>
+                <select class="form-select" id="habit" name="habit_id" required>
+                    <option value="" selected disabled>Select Habit</option>
+                        @foreach($inactiveHabits as $habit)
+                    <option value="{{ $habit->id }}">{{ $habit->habit_name }}</option>
+                        @endforeach
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Reactivate Habit</button>
+        </form>
+        </div>
+    </div>
+</div>
+
+
+
+ 
 
 <script>
     // Wait for the DOM to be ready

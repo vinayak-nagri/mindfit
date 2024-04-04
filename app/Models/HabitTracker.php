@@ -25,6 +25,8 @@ class HabitTracker extends Model
         'is_active' => 'boolean',
     ];
 
+    public $timestamps = true;
+
     public function user()
     {
         return $this->belongsTo(User::class);
