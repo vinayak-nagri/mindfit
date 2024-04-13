@@ -67,3 +67,11 @@ a.active {
     color: #ffffff;
 }
 
+.habit th {
+background-color: #dcb7e2;
+color: white;
+}
+
+/* .habit table th tr:hover {
+background-color: lightblue;
+} */

@@ -77,6 +77,7 @@
     </div>
 
     <!-- Add New Habit Form -->
+    @isset($habits)
     <div class="container">
     <h2 class="mt-5 mb-4">Add New Habit</h2>
 <div class="card m-3">
@@ -95,6 +96,7 @@
     </div>
 </div>
 </div>
+@endisset
 
 @if(session('success'))
         <div id="success-alert" class="alert alert-success">
@@ -102,16 +104,17 @@
         </div>
     @endif
 
-
+    @isset($habits)
     <div class="container">
     <h2 class="mt-5 mb-4">Habit Tracker for the Current Week</h2>
+    
     @if($habits->isEmpty())
         <p>No habits added yet.</p>
     @else
         <form id="habit-form" action="{{ route('habits.update') }}" method="POST">
         @csrf
         @method('PUT')
-        <table class="table table-bordered">
+        <table class="table habit table-bordered table-hover">
             <thead>
                 <tr>
                     <th scope="col">Habit</th>
@@ -151,8 +154,10 @@
         <button type="submit" class="btn btn-primary">Save</button>
         </form>
     @endif
+    @endisset
 </div>
 
+@isset($habits)
 <div class="container">
     <h2 class="mt-5 mb-4">Modify Habits</h2>
     <div class="card m-3">
@@ -163,14 +168,17 @@
                     <label for="habit_id" class="form-label">Select Habit to Deactivate:</label>
                     <select class="form-select" id="habit_id" name="habit_id">
                         <option value="" selected disabled>Select Habit</option>
+
                         @foreach($habits as $habit)
                             <option value="{{ $habit->id }}">{{ $habit->habit_name }}</option>
                         @endforeach
+                        
                     </select>
                 </div>
                 <button type="submit" class="btn btn-danger">Deactivate Habit</button>
             </form>
         </div>
+        @isset($inactiveHabits)
         <div class="card-body">
         <form action="{{ route('habits.reactivate') }}" method="POST">
             @csrf
@@ -178,19 +186,87 @@
                 <label for="habit" class="form-label">Select Habit to Reactivate</label>
                 <select class="form-select" id="habit" name="habit_id" required>
                     <option value="" selected disabled>Select Habit</option>
+                    
                         @foreach($inactiveHabits as $habit)
                     <option value="{{ $habit->id }}">{{ $habit->habit_name }}</option>
                         @endforeach
+                    
                 </select>
             </div>
+            @endisset
             <button type="submit" class="btn btn-primary">Reactivate Habit</button>
         </form>
         </div>
     </div>
 </div>
+@endisset
 
+@isset($weekStartDates)
+<div class="container">
+    <h2 class="mt-5 mb-4">Retrieve Previous Records</h2>
+    <form action="{{ route('habits.showWeek') }}" method="GET">
+        <div class="mb-3">
+            <label for="week">Select Week Start Date:</label>
+            <select class="form-select" name="week" id="week" required>
+                <option value="" selected disabled>Select Week Start Date</option>
+                @foreach($weekStartDates as $startDate)
+                    <option value="{{ $startDate }}">{{ $startDate }}</option>
+                @endforeach
+                
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Show Habits</button>
+    </form>
+    @endisset
+    @isset($habitsForWeek)
+    @if($habitsForWeek->isEmpty())
+        <p>No habits added for this week.</p>
+    @else
+    <h2 class="mt-5 mb-4">Habit Tracker for Selected Week</h2>
+    <table class="table table-bordered">
+    <thead>
+        <tr>
+            <th scope="col">Habit</th>
+            <th scope="col">Monday</th>
+            <th scope="col">Tuesday</th>
+            <th scope="col">Wednesday</th>
+            <th scope="col">Thursday</th>
+            <th scope="col">Friday</th>
+            <th scope="col">Saturday</th>
+            <th scope="col">Sunday</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach($habitsForWeek as $habit)
+        <tr>
+            <td>{{ $habit->habit_name }}</td>
+            <td><input type="checkbox" {{ $habit->monday ? 'checked' : '' }} disabled></td>
+            <td><input type="checkbox" {{ $habit->tuesday ? 'checked' : '' }} disabled></td>
+            <td><input type="checkbox" {{ $habit->wednesday ? 'checked' : '' }} disabled></td>
+            <td><input type="checkbox" {{ $habit->thursday ? 'checked' : '' }} disabled></td>
+            <td><input type="checkbox" {{ $habit->friday ? 'checked' : '' }} disabled></td>
+            <td><input type="checkbox" {{ $habit->saturday ? 'checked' : '' }} disabled></td>
+            <td><input type="checkbox" {{ $habit->sunday ? 'checked' : '' }} disabled></td>
+        </tr>
+        @endforeach
+    </tbody>
+</table>
+<a class="btn btn-primary btn-lg" href="{{route('habit.tracker')}}" style ="margin:5px;"role="button">Go Back</a>
 
+    @endif
+    @endisset
+</div>
 
+<div class="container">
+  <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+    <div class="col-md-4 d-flex align-items-center">
+      <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
+        <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
+      </a>
+      <span class="mb-3 mb-md-0 text-muted">© MindFit</span>
+    </div>
+  </footer>
+</div>
  
 
 <script>

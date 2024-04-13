@@ -14,6 +14,7 @@ class HabitTrackerController extends Controller
     public function index()
     {
         // $habits = HabitTracker::all();
+        
         $user = Auth::user();
         $habits = HabitTracker::where('user_id', $user->id)->get();
         $inactiveHabits = $habits->where('is_active', 0);
@@ -238,5 +239,22 @@ public function deactivateHabit(Request $request)
 
     //     return view('habit-tracker', compact('habitsForWeek'));
     // }
+
+
+    public function showWeek(Request $request)
+{
+    
+    $userId = Auth::id();
+    $selectedWeek = $request->input('week');
+    
+    // Retrieve habits for the selected week
+    $habitsForWeek = HabitTracker::where('week_start_date', $selectedWeek)
+                                  ->where('user_id', $userId)
+                                  ->get();
+    // dd($habitsForWeek);
+    // You can also pass $selectedWeek to your view if needed
+
+    return view('habit-tracker', compact('habitsForWeek'));
+}
 
 }
