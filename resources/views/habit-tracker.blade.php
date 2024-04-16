@@ -41,6 +41,8 @@
                         <a href="{{ url('/dashboard') }}">Dashboard</a>
                         <a href="{{ url('/affirmations') }}" >Affirmations</a>
                         <a href="{{route('habit.tracker')}}" class="active">Habit Tracker</a>
+                        <a href="{{route('journal.index')}}"> Journal </a>
+
                         
                     @else
                         <a href="{{ route('login') }}" >Log in</a>

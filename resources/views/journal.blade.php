@@ -15,6 +15,7 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Vast+Shadow&display=swap" rel="stylesheet">
+
         
 
         <!-- Styles -->
@@ -23,6 +24,7 @@
     </head>
         <body>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        <script src="https://cdn.tiny.cloud/1/jt7ituh0txbajv7ktsxb11m9ix19qd6s5wjf2aku0kegihj4/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 
         <nav class="navbar navbar-expand">
             <div class="container header">
@@ -35,11 +37,10 @@
                 <div class="links d-flex gap-4">
                     @auth
                         <span>Hi, {{ Auth::user()->name }}!</span>
-                        <a href="{{ url('/dashboard') }}" class="active">Dashboard</a>
+                        <a href="{{ url('/dashboard') }}">Dashboard</a>
                         <a href="{{route('affirmations')}}">Affirmations</a>
                         <a href="{{route('habit.tracker')}}">Habit Tracker</a>
-                        <a href="{{route('journal.index')}}"> Journal </a>
-
+                        <a href="{{route('journal.index')}}"  class="active"> Journal </a>
                     @else
                         <a href="{{ route('login') }}" >Log in</a>
                     
@@ -68,9 +69,61 @@
         <!-- <img src="{{asset('storage/watercolor.jpg')}}"> -->
         
         <div class="container p-3 mb-1">
-             <h1 class="display-3" style="text-emphasis: filled; font-family: 'Vast Shadow';">Your Dashboard</h1> 
+             <h1 class="display-3" style="text-emphasis: filled; font-family: 'Vast Shadow';">Your Personal Journal</h1> 
+        </div>
+        </div>
+
+        <div class="accordion" id="journalAccordion">
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="headingOne">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#journalFormCollapse" aria-expanded="true" aria-controls="journalFormCollapse">
+                <h2> Add a New Journal Entry </h2>
+            </button>
+        </h2>
+        <div id="journalFormCollapse" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#journalAccordion">
+            <div class="accordion-body">
+                <form action="{{ route('journal.index') }}" method="POST">
+                    @csrf
+                    <!-- Rich text editor for journal entry -->
+                    <div class="mb-3">
+                        <label for="journalEntry" class="form-label">Journal Entry</label>
+                        <textarea class="form-control" id="journalEntry" name="journal_entry" rows="5"></textarea>
+                        <script>
+                            tinymce.init({
+                            selector: '#journalEntry',
+                            height: 300,
+                            plugins: 'advlist autolink lists link image charmap print preview anchor',
+                            toolbar: 'undo redo | formatselect | bold italic underline | alignleft aligncenter alignright | bullist numlist outdent indent',
+                            menubar: false
+                            });
+                        </script>
+                    </div>
+                    <!-- Dropdown menu for mood selection -->
+                    <div class="mb-3">
+                        <label for="moodSelect" class="form-label">How are you feeling?</label>
+                        <select class="form-select" id="moodSelect" name="mood_id">
+                            <option selected disabled>Select mood</option>
+                            <!-- Loop through pre-existing moods to populate options -->
+                            @foreach($moods as $mood)
+                                <option value="{{ $mood->id }}">{{ $mood->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <!-- Tags input field -->
+                    <div class="mb-3">
+                        <label for="tagsInput" class="form-label">Tags (separated by commas)</label>
+                        <input type="text" class="form-control" id="tagsInput" name="tags">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
         </div>
     </div>
+</div>
+
+
+
+
 
 </body>
 </html>

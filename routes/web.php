@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AffirmationsController;
 use App\Http\Controllers\HabitTrackerController;
+use App\Http\Controllers\JournalController;
 
 
 /*
@@ -41,6 +42,9 @@ Route::middleware('auth')->group(function () {
     Route::post('/habits/deactivate', [HabitTrackerController::class, 'deactivateHabit'])->name('habits.deactivate');
     Route::post('/habits/reactivate', [HabitTrackerController::class, 'reactivateHabit'])->name('habits.reactivate');
     Route::get('/habits/week', [HabitTrackerController::class, 'showWeek'])->name('habits.showWeek');
+    Route::get('/journal', [JournalController::class, 'index'])->name('journal.index');
+    // Route::get('/journal/mood', [JournalController::class, 'mood'])->name('journal.mood');
+
 
     
     
