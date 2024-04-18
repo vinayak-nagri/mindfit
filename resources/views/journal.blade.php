@@ -73,6 +73,14 @@
         </div>
         </div>
 
+        @if(session('success'))
+        <div id="success-alert" class="alert alert-success">
+            {{ session('success') }}
+        </div>
+        @endif
+
+       
+
         <div class="accordion" id="journalAccordion">
     <div class="accordion-item">
         <h2 class="accordion-header" id="headingOne">
@@ -82,8 +90,21 @@
         </h2>
         <div id="journalFormCollapse" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#journalAccordion">
             <div class="accordion-body">
-                <form action="{{ route('journal.index') }}" method="POST">
+                <form action="{{ route('journal.store') }}" method="POST">
                     @csrf
+                    
+                    <!-- Dropdown menu for mood selection -->
+                    <div class="mb-3">
+                        <label for="moodSelect" class="form-label">How are you feeling?</label>
+                        <select class="form-select" id="moodSelect" name="mood_id">
+                            <option selected disabled>Select mood</option>
+                            <!-- Loop through pre-existing moods to populate options -->
+                            @foreach($moods as $mood)
+                                <option value="{{ $mood->id }}">{{ $mood->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
                     <!-- Rich text editor for journal entry -->
                     <div class="mb-3">
                         <label for="journalEntry" class="form-label">Journal Entry</label>
@@ -98,17 +119,9 @@
                             });
                         </script>
                     </div>
-                    <!-- Dropdown menu for mood selection -->
-                    <div class="mb-3">
-                        <label for="moodSelect" class="form-label">How are you feeling?</label>
-                        <select class="form-select" id="moodSelect" name="mood_id">
-                            <option selected disabled>Select mood</option>
-                            <!-- Loop through pre-existing moods to populate options -->
-                            @foreach($moods as $mood)
-                                <option value="{{ $mood->id }}">{{ $mood->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
+
+                    
+                    
                     <!-- Tags input field -->
                     <div class="mb-3">
                         <label for="tagsInput" class="form-label">Tags (separated by commas)</label>
@@ -121,8 +134,57 @@
     </div>
 </div>
 
+<div class="accordion" id="existingJournalEntries">
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="headingOne">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                <h2> Existing Journal Entries </h2>
+            </button>
+        </h2>
+        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#existingJournalEntries">
+            <div class="accordion-body">
+                <!-- Search Bar -->
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Search..." aria-label="Search" aria-describedby="basic-addon2">
+                    <button class="btn btn-outline-secondary" type="button" id="button-addon2">Search</button>
+                </div>
+
+                <!-- Display Journal Entries -->
+                @foreach($journalEntries as $entry)
+                <div class="card journalcard mb-3">
+                    <div class="card-header">{{ $entry->created_at->format('jS F Y, h:i A') }}</div>
+                    <div class="card-body">
+                        <p class="card-text">{!! nl2br(strip_tags($entry->entry_text)) !!}</p>
+                    </div>
+                    <div class="card-footer">
+                        Mood: {{ $entry->mood->name }}
+                        <br>
+                        Tags:
+                            @foreach ($entry->tags as $tag)
+                                {{ $tag->name }}
+                                    @if (!$loop->last)
+                                    ,
+                                    @endif
+                            @endforeach
+                    </div>
+                </div>
+                @endforeach
+            </div>
+        </div>
+    </div>
+</div>
 
 
+
+        <script>
+            // Wait for the DOM to be ready
+            $(document).ready(function () {
+            // After the DOM is loaded, wait for 3 seconds and then fade out the success alert
+            setTimeout(function () {
+            $("#success-alert").fadeOut("slow");
+            }, 3000); // 3000 milliseconds = 3 seconds
+            });
+        </script>
 
 
 </body>

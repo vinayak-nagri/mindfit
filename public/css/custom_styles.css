@@ -46,6 +46,10 @@ a.active {
     width: 300px;
 }
 
+.journalcard {
+    width: 100%;
+}
+
 .affirmations {
     min-width: 400px;
 }

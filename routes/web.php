@@ -44,6 +44,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/habits/week', [HabitTrackerController::class, 'showWeek'])->name('habits.showWeek');
     Route::get('/journal', [JournalController::class, 'index'])->name('journal.index');
     // Route::get('/journal/mood', [JournalController::class, 'mood'])->name('journal.mood');
+    Route::post('/journal/store', [JournalController::class, 'store'])->name('journal.store');
+
 
 
     

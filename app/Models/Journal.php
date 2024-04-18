@@ -32,4 +32,9 @@ class Journal extends Model
     {
         return $this->belongsTo(Mood::class);
     }
+
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class, 'journal_tag', 'journal_id', 'tag_id');
+    }
 }
