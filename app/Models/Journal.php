@@ -14,7 +14,7 @@ class Journal extends Model
     protected $fillable = [
         'user_id',
         'entry_date',
-        'entry',
+        'entry_text',
         'mood_id',
     ];
 
