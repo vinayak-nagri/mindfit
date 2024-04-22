@@ -145,20 +145,31 @@
 
 
 
-<div class="container">
-    <center> <h2>Breathwork Audios</h2> </center>
+
+
+<figure class="text-center m-5">
+    <h1> Breathwork Audios </h1>
+  <blockquote class="blockquote">
+    <p>Breath is the bridge which connects life to consciousness, which unites your body to your thoughts.</p>
+  </blockquote>
+  <figcaption class="blockquote-footer">
+   <cite title="Source Title">Thich Nhat Hanh</cite>
+  </figcaption>
+</figure>
     <div class="row">
         @foreach($breathworkAudios as $audio)
         <div class="col-md-4 mb-4">
-            <div class="card">
-                <img src="{{asset('storage/Meditation.jpg')}}" class="card-img-top" alt="Audio Image">
-                <div class="card-body">
-                    <h3 class="card-title">{{ $audio->title }}</h3>
+            <div class="card text-center" style="background-image: url('{{ asset('storage/Audios_3.png') }}');">
+                <!-- <img src="{{asset('storage/Meditation.jpg')}}" class="card-img-top" alt="Audio Image"> -->
+                <div class="card-body" style="background-color: rgba(255, 255, 255, 0.5)">
+                    <h3 class="card-title"><u>{{ $audio->title }}</u></h3>
                     <p class="card-text">{{ $audio->description }}</p>
                     <!-- Add Plyr audio player here -->  
                 </div>
                 <div class="card-footer">
-                    <button class="btn btn-primary play-btn" data-audio="{{ asset('storage/audio/' . $audio->file_path) }}">Play</button>
+                    <button class="btn btn-primary play-btn" data-audio="{{ asset('storage/audio/' . $audio->file_path) }}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play" viewBox="0 0 16 16">
+  <path d="M10.804 8 5 4.633v6.734zm.792-.696a.802.802 0 0 1 0 1.392l-6.363 3.692C4.713 12.69 4 12.345 4 11.692V4.308c0-.653.713-.998 1.233-.696z"/>
+</svg></button>
                 </div>
             </div>
         </div>
@@ -167,30 +178,50 @@
 
 
 
-    <center> <h2>Meditation Audios</h2> </center>
+    <figure class="text-center m-5">
+    <h1> Meditation Audios </h1>
+  <blockquote class="blockquote">
+    <p>Meditation is a silent heart, a peaceful mind which can make life more lovable.</p>
+  </blockquote>
+  <figcaption class="blockquote-footer">
+   <cite title="Source Title">Sri Chinmoy</cite>
+  </figcaption>
+</figure>
     <div class="row">
         @foreach($meditationAudios as $audio)
         <div class="col-md-4 mb-4">
-            <div class="card">
-                <img src="{{asset('storage/Meditation.jpg')}}" class="card-img-top" alt="Audio Image">
-                <div class="card-body">
-                    <h3 class="card-title">{{ $audio->title }}</h3>
+            <div class="card text-center" style="background-image: url('{{ asset('storage/Audios_2.jpg') }}');">
+                <!-- <img src="{{asset('storage/Meditation.jpg')}}" class="card-img-top" alt="Audio Image"> -->
+                <div class="card-body" style="background-color: rgba(255, 255, 255, 0.5)">
+                    <h3 class="card-title"><u>{{ $audio->title }}</u></h3>
                     <p class="card-text">{{ $audio->description }}</p>
                     <!-- Add Plyr audio player here -->
                 </div>
-                <div class="card-footer">
-                    <button class="btn btn-primary play-btn" data-audio="{{ asset('storage/audio/' . $audio->file_path) }}">Play</button>
+                <div class="card-footer" style="background-color: rgba(255, 255, 255, 0.5)">
+                    <button class="btn btn-primary play-btn" data-audio="{{ asset('storage/audio/' . $audio->file_path) }}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play" viewBox="0 0 16 16">
+  <path d="M10.804 8 5 4.633v6.734zm.792-.696a.802.802 0 0 1 0 1.392l-6.363 3.692C4.713 12.69 4 12.345 4 11.692V4.308c0-.653.713-.998 1.233-.696z"/>
+</svg></button>
                 </div>
             </div>
         </div>
         @endforeach
     </div>
-</div>
+
 
 <audio class="js-player" id="player" style="position: fixed; bottom: 0; left: 0; right: 0; background-color: #fff; padding: 10px;">
 <source id="audio-source" src=""></source>
 </audio> 
 
+<div class="container">
+  <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+    <div class="col-md-4 d-flex align-items-center">
+      <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
+        <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
+      </a>
+      <span class="mb-3 mb-md-0 text-muted">© MindFit</span>
+    </div>
+  </footer>
+</div>
 
 
 
