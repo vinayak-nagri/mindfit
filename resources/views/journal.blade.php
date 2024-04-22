@@ -41,6 +41,7 @@
                         <a href="{{route('affirmations')}}">Affirmations</a>
                         <a href="{{route('habit.tracker')}}">Habit Tracker</a>
                         <a href="{{route('journal.index')}}"  class="active"> Journal </a>
+                        <a href="{{route('audios')}}"> Meditation Audios </a>
                     @else
                         <a href="{{ route('login') }}" >Log in</a>
                     
@@ -224,6 +225,7 @@
             </button>
         </h2>
         <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#existingJournalEntries">
+            <div class="accordion-body" style="max-height: 600px; overflow-y: auto;">
             <div class="accordion-body">
                 <!-- Search Bar -->
                 <div class="container">
@@ -282,16 +284,18 @@
 
 @endisset
 
-<!-- 
-        <script>
-            // Wait for the DOM to be ready
-            $(document).ready(function () {
-            // After the DOM is loaded, wait for 3 seconds and then fade out the success alert
-            setTimeout(function () {
-            $("#success-alert").fadeOut("slow");
-            }, 3000); // 3000 milliseconds = 3 seconds
-            });
-        </script> -->
+<div class="container">
+  <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+    <div class="col-md-4 d-flex align-items-center">
+      <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
+        <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
+      </a>
+      <span class="mb-3 mb-md-0 text-muted">© MindFit</span>
+    </div>
+  </footer>
+</div>
+
+
 
 
 </body>

@@ -42,6 +42,7 @@
                         <a href="{{ url('/affirmations') }}" >Affirmations</a>
                         <a href="{{route('habit.tracker')}}" class="active">Habit Tracker</a>
                         <a href="{{route('journal.index')}}"> Journal </a>
+                        <a href="{{route('audios')}}"> Meditation Audios </a>
 
                         
                     @else
@@ -162,7 +163,7 @@
 @isset($habits)
 <div class="container">
     <h2 class="mt-5 mb-4">Modify Habits</h2>
-    <div class="card m-3">
+    <div class="card m-3 habit-card">
         <div class="card-body">
             <form action="{{ route('habits.deactivate') }}" method="POST">
                 @csrf

@@ -39,6 +39,8 @@
                         <a href="{{route('affirmations')}}">Affirmations</a>
                         <a href="{{route('habit.tracker')}}">Habit Tracker</a>
                         <a href="{{route('journal.index')}}"> Journal </a>
+                        <a href="{{route('audios')}}"> Meditation Audios </a>
+
 
                     @else
                         <a href="{{ route('login') }}" >Log in</a>
