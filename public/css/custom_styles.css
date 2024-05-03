@@ -63,8 +63,8 @@ a.active {
 }
 
 .row {
-    align-items: right;
-    margin-left: 200px;
+    align-items: center;
+    margin-left: 14%;
 }
 
 .footer {

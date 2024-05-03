@@ -38,7 +38,7 @@
                 <div class="links d-flex gap-4">
                     @auth
                         <span>Hi, {{ Auth::user()->name }}!</span>
-                        <a href="{{ url('/dashboard') }}">Dashboard</a>
+                        <!-- <a href="{{ url('/dashboard') }}">Dashboard</a> -->
                         <a href="{{ url('/affirmations') }}" >Affirmations</a>
                         <a href="{{route('habit.tracker')}}" class="active">Habit Tracker</a>
                         <a href="{{route('journal.index')}}"> Journal </a>
@@ -51,7 +51,7 @@
                 
             @endif
                         
-                        <a href="{{route('profile.edit')}}"> Profile </a>
+                        <!-- <a href="{{route('profile.edit')}}"> Profile </a> -->
                     @endauth
 
                     <form method="POST" action="{{ route('logout') }}">
@@ -135,13 +135,6 @@
                     @if($habit->is_active)
                         <tr>
                             <td>{{ $habit->habit_name }}</td>
-                            <!-- <td><input type="checkbox" name="monday"></td>
-                            <td><input type="checkbox" name="tuesday"></td>
-                            <td><input type="checkbox" name="wednesday"></td>
-                            <td><input type="checkbox" name="thursday"></td>
-                            <td><input type="checkbox" name="friday"></td>
-                            <td><input type="checkbox" name="saturday"></td>
-                            <td><input type="checkbox" name="sunday"></td> -->
                             <td><input type="checkbox" name="habits[{{ $habit->id }}][monday]"  {{ $habit->monday ? 'checked' : '' }}></td>
                             <td><input type="checkbox" name="habits[{{ $habit->id }}][tuesday]"  {{ $habit->tuesday ? 'checked' : '' }}></td>
                             <td><input type="checkbox" name="habits[{{ $habit->id }}][wednesday]" {{ $habit->wednesday ? 'checked' : '' }}></td>

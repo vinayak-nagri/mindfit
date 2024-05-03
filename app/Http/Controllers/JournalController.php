@@ -14,9 +14,13 @@ class JournalController extends Controller
 {
     public function index()
     {
-
+        // Retrieve all moods from the database
         $moods = Mood::all();
+
+        // Retrieve journal entries belonging to the authenticated user and order them by creation date in descending order
         $journalEntries = Journal::where('user_id', auth()->id())->orderBy('created_at', 'desc')->get();
+
+        // Pass the retrieved moods and journal entries to the journal view
         return view('journal',compact('moods','journalEntries'));
     }
     
@@ -24,7 +28,6 @@ class JournalController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request);
     // Validate the incoming request data
         $validatedData = $request->validate([
         'journal_entry' => 'required|string',
@@ -32,16 +35,12 @@ class JournalController extends Controller
         'tags' => 'nullable|string',
         ]);
     
-    // dd($request);
-    
     // Create a new journal entry
         $journal = new Journal();
         $journal->user_id = Auth::id();
         $journal->entry_text = $validatedData['journal_entry'];
         $journal->mood_id = $validatedData['mood_id'];
         $journal->week_start_date = Carbon::now()->startOfWeek();
-        
-        
         $journal->save();
 
     // Process and attach tags
@@ -58,45 +57,32 @@ class JournalController extends Controller
     }
 
     public function search(Request $request)
-{
+    {
     // Get the search query from the request
-    $query = $request->input('search');
-    // dd($query);
-    // Get the logged-in user's ID
-    $userId = auth()->id();
-    
-    // Search for journal entries belonging to the logged-in user
-    $journalEntries = Journal::where('user_id', auth()->id())
-        ->where(function ($q) use ($query) {
-            $q->where('entry_text', 'like', "%$query%")
-              ->orWhereHas('mood', function ($q) use ($query) {
-                  $q->where('name', 'like', "%$query%");
-              })
-              ->orWhereHas('tags', function ($q) use ($query) {
-                  $q->where('name', 'like', "%$query%");
-              });
-        })
-        ->orderBy('created_at', 'desc')
-        ->get();
+        $query = $request->input('search');
 
-    // $journalEntries = Journal::where('user_id', $userId)
-    //     ->where('entry_text', 'like', '%' . $query . '%')
-    //     ->get();
-
-        // $brule = Journal::where('user_id', $userId)
-        // ->where(function ($queryBuilder) use ($query) {
-        //     $queryBuilder->where('entry_text', 'like', '%' . $query . '%');
-        // })
-        // ->get();
-
-        // dd($brule);
+        // Get the logged-in user's ID
+        $userId = auth()->id();
+        
+        // Search for journal entries belonging to the logged-in user
+        $journalEntries = Journal::where('user_id', auth()->id())
+            ->where(function ($q) use ($query) {
+                $q->where('entry_text', 'like', "%$query%")
+                ->orWhereHas('mood', function ($q) use ($query) {
+                    $q->where('name', 'like', "%$query%");
+                })
+                ->orWhereHas('tags', function ($q) use ($query) {
+                    $q->where('name', 'like', "%$query%");
+                });
+            })
+            ->orderBy('created_at', 'desc')
+            ->get();
 
 
-    // Return the view with the search results
-    return view('journal', compact('journalEntries'));
-    // return redirect()->route('journal.search', ['journalEntries' => $journalEntries]);
+        // Return the view with the search results
+        return view('journal', compact('journalEntries'));
 
-}
+    }
 
 public function delete($id)
 {
@@ -108,7 +94,7 @@ public function delete($id)
         // If not, return a 403 Forbidden response
         abort(403);
     }
-
+    
     // Delete the journal entry
     $journalEntry->delete();
 
@@ -130,8 +116,6 @@ public function edit($id)
 public function update(Request $request, $id)
 {
     // Retrieve the journal entry to be updated
-
-    
     $journalEntry = Journal::findOrFail($id);
 
     // Validate the incoming data
@@ -139,16 +123,13 @@ public function update(Request $request, $id)
         'journal_entry' => 'required|string',
         'mood_id' => 'required|exists:moods,id',
         'tags' => 'nullable|string',
-        // Add validation rules for other fields if needed
-    ]);
-    // dd($validatedData['journal_entry']);
+        ]);
+    
     // Update the journal entry with the validated data
     $journalEntry->update([
         'entry_text' => $validatedData['journal_entry'],
         'mood_id' => $validatedData['mood_id'],
     ]);
-
-    // dd($journalEntry['entry_text']);
 
     // Process and attach tags
     if ($request->has('tags')) {
@@ -164,10 +145,8 @@ public function update(Request $request, $id)
         $journalEntry->tags()->detach();
     }
 
-    
-
     // Redirect the user to the appropriate page
-    return redirect()->route('journal.index')->with('success', 'Journal entry updated successfully.');;
+    return redirect()->route('journal.index')->with('success', 'Journal entry updated successfully.');
 }
 
 

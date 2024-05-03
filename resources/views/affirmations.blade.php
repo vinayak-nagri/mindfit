@@ -38,7 +38,7 @@
                 <div class="links d-flex gap-4">
                     @auth
                         <span>Hi, {{ Auth::user()->name }}!</span>
-                        <a href="{{ url('/dashboard') }}">Dashboard</a>
+                        <!-- <a href="{{ url('/dashboard') }}">Dashboard</a> -->
                         <a href="{{ url('/affirmations') }}" class="active">Affirmations</a>
                         <a href="{{route('habit.tracker')}}">Habit Tracker</a>
                         <a href="{{route('journal.index')}}"> Journal </a>
@@ -50,7 +50,7 @@
                 
             @endif
                         
-                        <a href="{{route('profile.edit')}}"> Profile </a>
+                        <!-- <a href="{{route('profile.edit')}}"> Profile </a> -->
                     @endauth
 
                     <form method="POST" action="{{ route('logout') }}">
@@ -126,6 +126,12 @@
 @if(session('success'))
         <div class="alert alert-success">
             {{ session('success') }}
+        </div>
+    @endif
+
+    @if(session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
         </div>
     @endif
 
@@ -218,7 +224,7 @@
     @endforeach -->
 
     
-    <div class="container">
+    
   <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
     <div class="col-md-4 d-flex align-items-center">
       <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
@@ -227,7 +233,7 @@
       <span class="mb-3 mb-md-0 text-muted">© MindFit</span>
     </div>
   </footer>
-</div>
+
     
     
     

@@ -31,7 +31,21 @@
                     @if (Route::has('login'))
                 <div class="links d-flex gap-4">
                     @auth
-                        <a href="{{ url('/dashboard') }}">Dashboard</a>
+                        <!-- <a href="{{ url('/dashboard') }}">Dashboard</a> -->
+                        <span>Hi, {{ Auth::user()->name }}!</span>
+                        <a href="{{route('affirmations')}}">Affirmations</a>
+                        <a href="{{route('habit.tracker')}}">Habit Tracker</a>
+                        <a href="{{route('journal.index')}}"> Journal </a>
+                        <a href="{{route('audios')}}"> Meditation Audios </a>
+                        <!-- <a href="{{route('profile.edit')}}"> Profile </a> -->
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <a href="route('logout')"
+                                    onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+                                Log Out
+                            </a>
+                        </form>
                     @else
                         <a href="{{ route('login') }}" >Log in</a>
 

@@ -37,7 +37,7 @@
                 <div class="links d-flex gap-4">
                     @auth
                         <span>Hi, {{ Auth::user()->name }}!</span>
-                        <a href="{{ url('/dashboard') }}">Dashboard</a>
+                        <!-- <a href="{{ url('/dashboard') }}">Dashboard</a> -->
                         <a href="{{route('affirmations')}}">Affirmations</a>
                         <a href="{{route('habit.tracker')}}">Habit Tracker</a>
                         <a href="{{route('journal.index')}}"  class="active"> Journal </a>
@@ -48,7 +48,7 @@
                 
             @endif
                         
-                        <a href="{{route('profile.edit')}}"> Profile </a>
+                        <!-- <a href="{{route('profile.edit')}}"> Profile </a> -->
                     @endauth
 
                     <form method="POST" action="{{ route('logout') }}">
@@ -169,7 +169,7 @@
         </h2>
         <div id="journalFormCollapse" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#journalAccordion">
             <div class="accordion-body">
-                <form action="{{ route('journal.store') }}" method="POST">
+                <form action="{{ route('journal.store') }}" method="POST" id="myForm">
                     @csrf
                     
                     <!-- Dropdown menu for mood selection -->
@@ -208,8 +208,10 @@
                         <label for="tagsInput" class="form-label">Tags (separated by commas)</label>
                         <input type="text" class="form-control" id="tagsInput" name="tags">
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button onclick="validateForm()" type="submit" class="btn btn-primary" >Submit</button>
                 </form>
+                <div id="error" style="display: none; color: red;">Please fill in all fields</div>
+
             </div>
         </div>
     </div>
@@ -232,7 +234,7 @@
                     <form action="{{ route('journal.search') }}" method="GET">
                 <div class="input-group mb-3">
                     <input type="text" class="form-control" placeholder="Search diary entries..." name="search" value="{{ request('search') }}">
-                    <button class="btn btn-outline-secondary" type="submit">Search</button>
+                    <button class="btn btn-outline-secondary"  type="submit">Search</button>
                 </div>
                     </form>
                 </div>
@@ -284,7 +286,21 @@
 
 @endisset
 
-<div class="container">
+<!-- <script>
+function validateForm() {
+    var journalEntry = document.getElementById("journalEntry").value;
+    var moodId = document.getElementById("moodSelect").value;
+    var tags = document.getElementById("tagsInput").value;
+
+    if (journalEntry.trim() === '' || moodId.trim() === '' || tags.trim() === '') {
+        document.getElementById("error").style.display = "block";
+    } else {
+        document.getElementById("error").style.display = "none";
+        document.getElementById("myForm").submit(); // Submit the form if all fields are filled
+    }
+}
+</script> -->
+
   <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
     <div class="col-md-4 d-flex align-items-center">
       <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
@@ -293,7 +309,7 @@
       <span class="mb-3 mb-md-0 text-muted">© MindFit</span>
     </div>
   </footer>
-</div>
+
 
 
 

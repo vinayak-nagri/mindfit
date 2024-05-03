@@ -70,7 +70,7 @@
                 <div class="links d-flex gap-4">
                     @auth
                         <span>Hi, {{ Auth::user()->name }}!</span>
-                        <a href="{{ url('/dashboard') }}" >Dashboard</a>
+                        <!-- <a href="{{ url('/dashboard') }}" >Dashboard</a> -->
                         <a href="{{route('affirmations')}}">Affirmations</a>
                         <a href="{{route('habit.tracker')}}">Habit Tracker</a>
                         <a href="{{route('journal.index')}}"> Journal </a>
@@ -82,7 +82,7 @@
                 
             @endif
                         
-                        <a href="{{route('profile.edit')}}"> Profile </a>
+                        <!-- <a href="{{route('profile.edit')}}"> Profile </a> -->
                     @endauth
 
                     <form method="POST" action="{{ route('logout') }}">

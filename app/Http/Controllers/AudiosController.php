@@ -10,21 +10,31 @@ class AudiosController extends Controller
 {
     public function index()
     {
+        // Retrieve all audio files
         $audios = Audio::all();
+
+        // Retrieve breathwork audios
         $breathworkAudios = Audio::where('type', 'breathwork')->get();
+
+        // Retrieve meditation audios
         $meditationAudios = Audio::where('type', 'meditation')->get();  
+
+        // Return the view with the audio data
         return view('audios', compact('audios','breathworkAudios','meditationAudios'));
     }
 
+    
+    //The following function is for the author to upload audio files and is
+    //not accessible during regular operation of the website.
     public function store(Request $request)
-{
+    {
     // Validate the incoming request data
     $validatedData = $request->validate([
         'title' => 'required|string',
         'type' => 'required|string',
         'description' => 'nullable|string',
     ]);
-    // dd($validatedData);
+    
 
     // Store the audio file
     $audioPath = $request->file('audio')->store('audio', 'public');
@@ -37,10 +47,10 @@ class AudiosController extends Controller
     $audio->file_path = basename($audioPath);
     $audio->save();
 
-    // Optionally, you can add a success message to the session
+    
     return redirect()->route('audios')->with('success', 'Audio uploaded successfully.');
 
-}
+    }
 
 
 

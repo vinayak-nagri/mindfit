@@ -48,7 +48,7 @@
                 
             @endif
                         
-                        <a href="{{route('profile.edit')}}"> Profile </a>
+                        <!-- <a href="{{route('profile.edit')}}"> Profile </a> -->
                     @endauth
 
                     <form method="POST" action="{{ route('logout') }}">
@@ -73,6 +73,95 @@
              <h1 class="display-3" style="text-emphasis: filled; font-family: 'Vast Shadow';">Your Dashboard</h1> 
         </div>
     </div>
+
+    <figure class="text-center m-5">
+    <h1> Access Your Digital Tools </h1>
+ 
+</figure>
+
+    <div class="container mt-4 d-flex justify-content-center">
+            <div class="card-group ml-6">
+            <div class="row flex-row ml-6">
+                <div class="col-md-6 mb-4">
+                
+                <div class="card">
+                    <img class="card-img-top" src="{{asset('storage/journal.png')}}"/>
+                    
+                    <div class="card-body">
+                    <a href="{{route('journal.index')}}"> <h2 class="card-title"> Journaling </h2> </a>
+                        <!-- <span class="card-subtitle"> Subtitle </span> -->
+                        <div class="card-text">
+                        Capture your thoughts in a personalized sanctuary with our rich text journal feature. Organize your 
+                        journey seamlessly by tagging entries, creating a tailored reflection space for your unique experiences.                         </div>
+                    </div>      
+                </div>
+                
+                </div>
+                
+                <div class="col-md-6 mb-4">
+
+                
+                <div class="card">
+                    <img class="card-img-top" src="{{asset('storage/Meditation.jpg')}}"/>
+                    <div class="card-body">
+                    <a href="{{route('audios')}}"> <h2 class="card-title"> Breathwork & Meditation Audios </h2> </a>
+                        <!-- <span class="card-subtitle"> Subtitle </span> -->
+                        <div class="card-text">
+                        Immerse yourself in tranquility with our meditation audios, thoughtfully categorized by time duration and 
+                        moods such as energy, calming, and focus.                     
+                        </div>
+                    </div>      
+                </div>
+                
+                </div>
+                <div class="col-md-6 mb-4">
+                
+                <div class="card">
+                    <img class="card-img-top" src="{{asset('storage/Habit_Tracker.jpg')}}"/>
+                    <div class="card-body">
+                    <a href="{{route('habit.tracker')}}"> <h2 class="card-title"> Habit Tracker </h2> </a>
+                        <!-- <span class="card-subtitle"> Subtitle </span> -->
+                        <div class="card-text">
+                        Transform your routine with our weekly habit tracker, seamlessly integrating progress monitoring into 
+                        your lifestyle. Reflect on your journey by reviewing past week records, empowering you to cultivate 
+                        lasting positive habits.
+                    </div>
+                    </div>      
+                </div>
+                
+                </div>
+                <div class="col-md-6 mb-4">
+                
+                <div class="card">
+                    <img class="card-img-top" src="{{asset('storage/Affirmations.jpg')}}"/>
+                    <div class="card-body">
+                    <a href="{{route('affirmations')}}"> <h2 class="card-title"> Affirmations </h2>  </a>
+                        <!-- <span class="card-subtitle"> Subtitle </span> -->
+                        <div class="card-text">
+                        Elevate your mindset with our affirmations feature, delivering a daily dose of positivity. Explore a 
+                        diverse array of uplifting affirmations and curate your favorites for a personalized reservoir of 
+                        inspiration.                        
+                    </div>
+                    </div>      
+                </div>
+               
+                </div>
+            </div>
+            </div>
+</div>
+
+<div class="container">
+  <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+    <div class="col-md-4 d-flex align-items-center">
+      <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
+        <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
+      </a>
+      <span class="mb-3 mb-md-0 text-muted">© MindFit</span>
+    </div>
+
+   
+  </footer>
+</div>
 
 </body>
 </html>
